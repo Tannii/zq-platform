@@ -44,5 +44,6 @@
   "announcementManagement": "公告管理",
   "messageList": "消息列表",
   "dataScreen": "数据大屏",
-  "screenManagement": "大屏管理"
+  "screenManagement": "大屏管理",
+  "personManagement": "人员管理"
 }

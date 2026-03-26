@@ -5,8 +5,7 @@
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { useAccessStore } from '@vben/stores';
-
+// import { useAccessStore } from '@vben/stores';
 import {
   getUnreadAnnouncementCountApi,
   getUserAnnouncementListApi,
@@ -73,7 +72,7 @@ const typeAvatarMap: Record<string, string> = {
 
 export function useNotification() {
   const router = useRouter();
-  const accessStore = useAccessStore();
+  // const accessStore = useAccessStore();
 
   // 总未读数量
   const totalUnreadCount = computed(
@@ -254,75 +253,75 @@ export function useNotification() {
   }
 
   // 连接 WebSocket
-  function connectWebSocket() {
-    const token = accessStore.accessToken;
-    if (!token) return;
-
-    // 构建 WebSocket URL
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.host;
-    const wsUrl = `${protocol}//${host}/ws/notification/?token=${token}`;
-
-    try {
-      wsInstance.value = new WebSocket(wsUrl);
-
-      wsInstance.value.addEventListener('open', () => {
-        wsConnected.value = true;
-        console.log('WebSocket 已连接');
-        // 发送订阅消息
-        wsInstance.value?.send(JSON.stringify({ type: 'subscribe' }));
-      });
-
-      wsInstance.value.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          handleWebSocketMessage(data);
-        } catch (error) {
-          console.error('解析 WebSocket 消息失败:', error);
-        }
-      };
-
-      wsInstance.value.addEventListener('close', () => {
-        wsConnected.value = false;
-        console.log('WebSocket 已断开');
-        // 5秒后重连
-        setTimeout(connectWebSocket, 5000);
-      });
-
-      wsInstance.value.onerror = (error) => {
-        console.error('WebSocket 错误:', error);
-      };
-    } catch (error) {
-      console.error('WebSocket 连接失败:', error);
-    }
-  }
+  // function connectWebSocket() {
+  //   const token = accessStore.accessToken;
+  //   if (!token) return;
+  //
+  //   // 构建 WebSocket URL
+  //   const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  //   const host = window.location.host;
+  //   const wsUrl = `${protocol}//${host}/ws/notification/?token=${token}`;
+  //
+  //   try {
+  //     wsInstance.value = new WebSocket(wsUrl);
+  //
+  //     wsInstance.value.addEventListener('open', () => {
+  //       wsConnected.value = true;
+  //       console.log('WebSocket 已连接');
+  //       // 发送订阅消息
+  //       wsInstance.value?.send(JSON.stringify({ type: 'subscribe' }));
+  //     });
+  //
+  //     wsInstance.value.onmessage = (event) => {
+  //       try {
+  //         const data = JSON.parse(event.data);
+  //         handleWebSocketMessage(data);
+  //       } catch (error) {
+  //         console.error('解析 WebSocket 消息失败:', error);
+  //       }
+  //     };
+  //
+  //     wsInstance.value.addEventListener('close', () => {
+  //       wsConnected.value = false;
+  //       console.log('WebSocket 已断开');
+  //       // 5秒后重连
+  //       setTimeout(connectWebSocket, 5000);
+  //     });
+  //
+  //     wsInstance.value.onerror = (error) => {
+  //       console.error('WebSocket 错误:', error);
+  //     };
+  //   } catch (error) {
+  //     console.error('WebSocket 连接失败:', error);
+  //   }
+  // }
 
   // 处理 WebSocket 消息
-  function handleWebSocketMessage(data: any) {
-    if (data.type === 'notification') {
-      // 收到新通知
-      const msgData = data.data;
-      const newNotification: NotificationItem = {
-        id: msgData.id,
-        avatar: typeAvatarMap[msgData.msg_type] ?? typeAvatarMap.system!,
-        title: msgData.title,
-        message: msgData.content,
-        date: '刚刚',
-        isRead: false,
-        linkType: msgData.link_type,
-        linkId: msgData.link_id,
-      };
-
-      // 添加到列表头部
-      notifications.value.unshift(newNotification);
-      // 只保留最近10条
-      if (notifications.value.length > 10) {
-        notifications.value.pop();
-      }
-      // 更新未读数量
-      messageUnreadCount.value += 1;
-    }
-  }
+  // function handleWebSocketMessage(data: any) {
+  //   if (data.type === 'notification') {
+  //     // 收到新通知
+  //     const msgData = data.data;
+  //     const newNotification: NotificationItem = {
+  //       id: msgData.id,
+  //       avatar: typeAvatarMap[msgData.msg_type] ?? typeAvatarMap.system!,
+  //       title: msgData.title,
+  //       message: msgData.content,
+  //       date: '刚刚',
+  //       isRead: false,
+  //       linkType: msgData.link_type,
+  //       linkId: msgData.link_id,
+  //     };
+  //
+  //     // 添加到列表头部
+  //     notifications.value.unshift(newNotification);
+  //     // 只保留最近10条
+  //     if (notifications.value.length > 10) {
+  //       notifications.value.pop();
+  //     }
+  //     // 更新未读数量
+  //     messageUnreadCount.value += 1;
+  //   }
+  // }
 
   // 断开 WebSocket
   function disconnectWebSocket() {
@@ -353,7 +352,7 @@ export function useNotification() {
     loadUnreadCount();
     loadAnnouncements();
     loadAnnouncementUnreadCount();
-    connectWebSocket();
+    // connectWebSocket();
   }
 
   // 清理

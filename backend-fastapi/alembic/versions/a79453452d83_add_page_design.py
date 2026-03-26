@@ -9,7 +9,7 @@ from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy.dialects import postgresql
+from sqlalchemy.dialects import postgresql, mysql
 
 # revision identifiers, used by Alembic.
 revision: str = 'a79453452d83'
@@ -62,7 +62,7 @@ def upgrade() -> None:
     sa.Column('description', sa.Text(), nullable=True, comment='描述'),
     sa.Column('status', sa.String(length=20), nullable=True, comment='状态: draft/published'),
     sa.Column('version', sa.Integer(), nullable=True, comment='版本号'),
-    sa.Column('page_config', postgresql.JSONB(astext_type=sa.Text()), nullable=True, comment='页面设计配置'),
+    sa.Column('page_config', mysql.JSON().with_variant(postgresql.JSONB(astext_type=sa.Text()), 'postgresql'), nullable=True, comment='页面设计配置'),
     sa.Column('id', sa.String(length=21), nullable=False, comment='主键ID(NanoId)'),
     sa.Column('sort', sa.Integer(), nullable=True, comment='排序'),
     sa.Column('is_deleted', sa.Boolean(), nullable=True, comment='是否删除'),

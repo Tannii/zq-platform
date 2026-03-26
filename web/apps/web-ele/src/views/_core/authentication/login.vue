@@ -61,7 +61,7 @@ const formSchema = computed((): VbenFormSchema[] => {
       componentProps: {
         // placeholder: $t('authentication.usernameTip'),
         placeholder: $t('authentication.loginSubtitle'),
-        disabled: true,
+        disabled: false,
       },
 
       // dependencies: {
@@ -80,7 +80,7 @@ const formSchema = computed((): VbenFormSchema[] => {
       //   },
       //   triggerFields: ['selectAccount'],
       // },
-      defaultValue: '',
+      defaultValue: 'superadmin',
       fieldName: 'username',
       label: $t('authentication.username'),
       rules: z.string().min(1, { message: $t('authentication.usernameTip') }),
@@ -90,9 +90,9 @@ const formSchema = computed((): VbenFormSchema[] => {
       componentProps: {
         // placeholder: $t('authentication.password'),
         placeholder: $t('authentication.loginSubtitle'),
-        disabled: true,
+        disabled: false,
       },
-      defaultValue: '',
+      defaultValue: '123456',
       fieldName: 'password',
       label: $t('authentication.password'),
       rules: z.string().min(1, { message: $t('authentication.passwordTip') }),
