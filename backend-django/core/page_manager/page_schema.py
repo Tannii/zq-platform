@@ -1,5 +1,9 @@
 """
-页面管理 Schema 定义
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: page_schema.py
+@Desc: 页面管理 Schema - 页面元数据验证模式
 """
 from typing import Any, Dict, Optional
 

@@ -94,6 +94,8 @@ class UserUpdate(BaseModel):
     is_active: Optional[bool] = Field(None, description="是否激活")
     dept_id: Optional[str] = Field(None, description="所属部门ID")
     manager_id: Optional[str] = Field(None, description="直属上级ID")
+    role_id: Optional[str] = Field(None, description="角色ID")
+    post_id: Optional[str] = Field(None, description="岗位ID")
     sort: Optional[int] = Field(None, description="排序")
     
     @field_validator("mobile")
@@ -154,6 +156,8 @@ class UserResponse(BaseModel):
     is_active: bool = True
     dept_id: Optional[str] = None
     dept_name: Optional[str] = None
+    role_id: Optional[str] = None  # 添加角色ID
+    post_id: Optional[str] = None  # 添加岗位ID
     manager_id: Optional[str] = None
     manager_name: Optional[str] = None
     last_login: Optional[datetime] = None

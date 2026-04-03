@@ -1,5 +1,9 @@
 """
-页面管理数据模型
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: page_model.py
+@Desc: 页面管理模型 - 用于管理系统页面元数据
 """
 from django.db import models
 

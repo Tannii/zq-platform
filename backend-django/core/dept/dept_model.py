@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: dept_model.py
 @Desc: Dept Model - 部门模型 - 用于管理组织架构中的部门信息
-"""
-"""
-Dept Model - 部门模型
-用于管理组织架构中的部门信息
 """
 from django.core.validators import EmailValidator, RegexValidator
 from django.db import models

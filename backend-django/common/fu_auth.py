@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: fu_auth.py
 @Desc: JWT 鉴权和权限校验 - 基于 Core 模块的权限结构重新设计
-"""
-"""
-JWT 鉴权和权限校验
-基于 Core 模块的权限结构重新设计
 """
 import logging
 import re

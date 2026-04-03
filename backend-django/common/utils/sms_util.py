@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# time: 2024/12/28
-# file: sms_util.py
-# author: 臧成龙
-# QQ: 939589097
+"""
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: sms_util.py
+@Desc: 短信发送工具
+"""
 
 import json
 import random
@@ -181,10 +184,10 @@ class SmsService:
     def _validate_phone_number(self, phone_number: str) -> bool:
         """
         验证手机号码格式
-        
+
         Args:
             phone_number: 手机号码
-            
+
         Returns:
             是否为有效手机号
         """

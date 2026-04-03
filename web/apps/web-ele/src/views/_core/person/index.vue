@@ -26,8 +26,6 @@ import {
   updatePersonApi,
 } from '#/api/core/person';
 
-defineOptions({ name: 'SystemPerson' });
-
 // 表格数据
 const personList = ref<PersonApi.Person[]>([]);
 const total = ref(0);
@@ -42,7 +40,7 @@ const dialogTitle = ref('添加人员');
 // 表单数据
 const form = ref<PersonApi.Person>({
   name: '',
-  gender: 'male',
+  gender: '0',
   phone: '',
   destination: '',
 });
@@ -56,8 +54,8 @@ const editingId = ref<null | string>(null);
 
 // 性别选项
 const genderOptions = [
-  { label: '男', value: 'male' },
-  { label: '女', value: 'female' },
+  { label: '男', value: '0' },
+  { label: '女', value: '1' },
 ];
 
 // 加载人员列表
@@ -69,8 +67,8 @@ const loadPersonList = async () => {
       pageSize: pageSize.value,
       keyword: keyword.value,
     });
-    personList.value = response.data.items;
-    total.value = response.data.total;
+    personList.value = response.items;
+    total.value = response.total;
   } catch {
     ElMessage.error('获取人员列表失败');
   } finally {
@@ -97,8 +95,8 @@ const openAddDialog = () => {
   dialogTitle.value = '添加人员';
   form.value = {
     name: '',
-    gender: 'male',
-    phone: '',
+    gender: '0',
+    phone: '13768893456',
     destination: '',
   };
   dialogVisible.value = true;
@@ -156,7 +154,7 @@ onMounted(() => {
     <div class="page-header">
       <h2>人员登记</h2>
       <ElButton type="primary" @click="openAddDialog" :icon="Plus">
-        添加人员
+        添加人员1
       </ElButton>
     </div>
 
@@ -172,17 +170,17 @@ onMounted(() => {
     </div>
 
     <ElTable v-loading="loading" :data="personList" style="width: 100%" border>
-      <ElTableColumn prop="id" label="ID" width="80" />
+      <ElTableColumn prop="id" label="ID" width="280" />
       <ElTableColumn prop="name" label="姓名" />
       <ElTableColumn prop="gender" label="性别">
         <template #default="scope">
-          {{ scope.row.gender === 'male' ? '男' : '女' }}
+          {{ scope.row.gender === '0' ? '男' : '女' }}
         </template>
       </ElTableColumn>
       <ElTableColumn prop="phone" label="手机号" />
       <ElTableColumn prop="destination" label="目的地" />
-      <ElTableColumn prop="createdAt" label="创建时间" width="180" />
-      <ElTableColumn label="操作" width="150" fixed="right">
+      <ElTableColumn prop="sys_create_datetime" label="创建时间" width="180" />
+      <ElTableColumn label="操作" width="250" fixed="right">
         <template #default="scope">
           <ElButton
             type="primary"

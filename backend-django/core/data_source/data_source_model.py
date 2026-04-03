@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Data Source Model - 数据源模型
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: data_source_api.py
+@Desc: Data Source Model - 数据源模型
 用于管理系统数据源配置，支持 API、SQL、静态数据等多种类型
 """
 from django.db import models

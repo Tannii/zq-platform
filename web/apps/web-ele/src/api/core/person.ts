@@ -5,11 +5,11 @@ export namespace PersonApi {
   export interface Person {
     id?: string;
     name: string;
-    gender: 'female' | 'male';
+    gender: '0' | '1';
     phone: string;
     destination: string;
-    createdAt?: string;
-    updatedAt?: string;
+    sys_create_datetime?: string;
+    sys_update_datetime?: string;
   }
 
   /** 分页查询参数 */

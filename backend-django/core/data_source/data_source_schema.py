@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Data Source Schema - 数据源数据验证模式
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: data_source_api.py
+@Desc: Data Source Schema - 数据源数据验证模式
 """
+
 from typing import Optional, List, Any, Dict
 
 from ninja import ModelSchema, Field, Schema

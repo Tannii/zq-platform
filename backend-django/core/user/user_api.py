@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: user_api.py
 @Desc: User API - 用户管理接口 - 提供用户的 CRUD 操作和高级功能
 """
@@ -179,7 +179,7 @@ def delete_user(request, user_id: str):
     return instance
 
 
-@router.delete("/user/batch/delete", response=UserSchemaBatchDeleteOut, summary="批量删除用户")
+@router.post("/user/batch/delete", response=UserSchemaBatchDeleteOut, summary="批量删除用户")
 def delete_batch_user(request, data: UserSchemaBatchDeleteIn):
     """
     批量删除用户

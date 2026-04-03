@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: oauth_service.py
 @Desc: OAuth Service - OAuth 业务逻辑层 - 处理第三方 OAuth 登录逻辑
 """

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: rule_convert.py
 @Desc: 命名规则转换 Tips：大小驼峰及下划线互转 - @descript 大驼峰: 首字母大写其余每一个逻辑断点（单词）都用大写字母标记,同帕斯卡命名法
 """

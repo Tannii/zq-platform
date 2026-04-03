@@ -1,5 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
-页面管理 API
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: page_api.py
+@Desc: 页面管理 API
 页面元数据的 CRUD、发布、复制、导入导出
 """
 import json

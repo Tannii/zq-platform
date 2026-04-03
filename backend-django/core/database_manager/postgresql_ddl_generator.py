@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: postgresql_ddl_generator.py
 @Desc: PostgreSQL DDL生成器 - 由于PostgreSQL没有像MySQL的SHOW CREATE TABLE命令，需要手动构建DDL
 """
-"""
-PostgreSQL DDL生成器
-由于PostgreSQL没有像MySQL的SHOW CREATE TABLE命令，需要手动构建DDL
-"""
+
 from typing import List, Dict, Any, Optional
 
 

@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# time: 1/24/2024 10:47 AM
-# file: fu_pagination.py
-# author: 臧成龙
-# QQ: 939589097
+"""
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: fu_auth.py
+@Desc: 分页工具
+"""
 from typing import Any, List
 
 from ninja import Field, Schema

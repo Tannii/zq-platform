@@ -1,9 +1,9 @@
-# Author 臧成龙
+# Author 张诚成
 # coding=utf-8
-# @Time    : 2022/5/16 21:09
+# @Time    : 2026/4/3
 # @File    : list_to_tree.py
 # @Software: PyCharm
-# @qq: 939589097
+# @qq: 941177402
 
 
 def add_node(p, node):

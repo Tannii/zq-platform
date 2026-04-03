@@ -408,6 +408,7 @@ def get_storage_backend(config: dict = None) -> StorageBackend:
         }
 
     storage_type = config.get('storage_type', 'local')
+    print('storage_type',storage_type)
 
     if storage_type == 'local':
         return LocalStorageBackend(config.get('local_base_path'))

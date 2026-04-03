@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: redis_monitor_api.py
 @Desc: 获取项目Redis配置 - redis_host = getattr(settings, 'REDIS_HOST', '127.0.0.1')
 """

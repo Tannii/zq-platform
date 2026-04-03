@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: database_manager_service.py
 @Desc: 数据库管理服务 - 使用工厂模式根据数据库类型创建对应的处理器
 """
-"""
-数据库管理服务
-使用工厂模式根据数据库类型创建对应的处理器
-"""
+
 import logging
 
 from django.conf import settings

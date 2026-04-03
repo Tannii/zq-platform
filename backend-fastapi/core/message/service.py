@@ -7,6 +7,8 @@
 @File: service.py
 @Desc: 消息中心服务（异步版本）
 """
+from app.config import settings
+
 """
 消息中心服务（异步版本）
 """
@@ -216,7 +218,7 @@ class MessageService:
 
 class AnnouncementService:
     """公告管理服务"""
-
+    # 检查数据库类型
     @staticmethod
     async def get_list(
             db: AsyncSession,
@@ -278,31 +280,81 @@ class AnnouncementService:
 
         # 过滤接收范围 - 使用JSONB的contains操作符
         target_conditions = [Announcement.target_type == "all"]
-
+        is_postgresql = "postgresql" in settings.DATABASE_URL
+        is_mysql = "mysql" in settings.DATABASE_URL
+        is_sqlite = "sqlite" in settings.DATABASE_URL
         if user_dept_ids:
             for dept_id in user_dept_ids:
-                target_conditions.append(
-                    and_(
-                        Announcement.target_type == "dept",
-                        Announcement.target_ids.op('@>')([dept_id])
+                if is_postgresql:
+                    # PostgreSQL 使用 @> 操作符
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "dept",
+                            Announcement.target_ids.op('@>')([dept_id])
+                        )
                     )
-                )
+                elif is_mysql:
+                    # MySQL 使用 JSON_CONTAINS 函数
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "dept",
+                            func.JSON_CONTAINS(Announcement.target_ids, f'"{dept_id}"')
+                        )
+                    )
+                elif is_sqlite:
+                    # SQLite 使用 LIKE 操作（简单实现）
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "dept",
+                            Announcement.target_ids.like(f'%{dept_id}%')
+                        )
+                    )
 
         if user_role_ids:
             for role_id in user_role_ids:
-                target_conditions.append(
-                    and_(
-                        Announcement.target_type == "role",
-                        Announcement.target_ids.op('@>')([role_id])
+                if is_postgresql:
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "role",
+                            Announcement.target_ids.op('@>')([role_id])
+                        )
                     )
-                )
+                elif is_mysql:
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "role",
+                            func.JSON_CONTAINS(Announcement.target_ids, f'"{role_id}"')
+                        )
+                    )
+                elif is_sqlite:
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "role",
+                            Announcement.target_ids.like(f'%{role_id}%')
+                        )
+                    )
 
-        target_conditions.append(
-            and_(
-                Announcement.target_type == "user",
-                Announcement.target_ids.op('@>')([user_id])
+        if is_postgresql:
+            target_conditions.append(
+                and_(
+                    Announcement.target_type == "user",
+                    Announcement.target_ids.op('@>')([user_id])
+                )
             )
-        )
+        elif is_mysql:
+            target_conditions.append(
+                and_(
+                    Announcement.target_type == "user",
+                    func.JSON_CONTAINS(Announcement.target_ids, f'"{user_id}"')
+                )
+            )
+        elif is_sqlite:
+            target_conditions.append(
+                and_(
+                    Announcement.target_type == "user",
+                    Announcement.target_ids.like(f'%{user_id}%')
+                )
+            )
 
         conditions.append(or_(*target_conditions))
 
@@ -500,31 +552,81 @@ class AnnouncementService:
 
         # 过滤接收范围 - 使用JSONB的contains操作符
         target_conditions = [Announcement.target_type == "all"]
-
+        is_postgresql = "postgresql" in settings.DATABASE_URL
+        is_mysql = "mysql" in settings.DATABASE_URL
+        is_sqlite = "sqlite" in settings.DATABASE_URL
         if user_dept_ids:
             for dept_id in user_dept_ids:
-                target_conditions.append(
-                    and_(
-                        Announcement.target_type == "dept",
-                        Announcement.target_ids.op('@>')([dept_id])
+                if is_postgresql:
+                    # PostgreSQL 使用 @> 操作符
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "dept",
+                            Announcement.target_ids.op('@>')([dept_id])
+                        )
                     )
-                )
+                elif is_mysql:
+                    # MySQL 使用 JSON_CONTAINS 函数
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "dept",
+                            func.JSON_CONTAINS(Announcement.target_ids, f'"{dept_id}"')
+                        )
+                    )
+                elif is_sqlite:
+                    # SQLite 使用 LIKE 操作（简单实现）
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "dept",
+                            Announcement.target_ids.like(f'%{dept_id}%')
+                        )
+                    )
 
         if user_role_ids:
             for role_id in user_role_ids:
-                target_conditions.append(
-                    and_(
-                        Announcement.target_type == "role",
-                        Announcement.target_ids.op('@>')([role_id])
+                if is_postgresql:
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "role",
+                            Announcement.target_ids.op('@>')([role_id])
+                        )
                     )
-                )
+                elif is_mysql:
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "role",
+                            func.JSON_CONTAINS(Announcement.target_ids, f'"{role_id}"')
+                        )
+                    )
+                elif is_sqlite:
+                    target_conditions.append(
+                        and_(
+                            Announcement.target_type == "role",
+                            Announcement.target_ids.like(f'%{role_id}%')
+                        )
+                    )
 
-        target_conditions.append(
-            and_(
-                Announcement.target_type == "user",
-                Announcement.target_ids.op('@>')([user_id])
+        if is_postgresql:
+            target_conditions.append(
+                and_(
+                    Announcement.target_type == "user",
+                    Announcement.target_ids.op('@>')([user_id])
+                )
             )
-        )
+        elif is_mysql:
+            target_conditions.append(
+                and_(
+                    Announcement.target_type == "user",
+                    func.JSON_CONTAINS(Announcement.target_ids, f'"{user_id}"')
+                )
+            )
+        elif is_sqlite:
+            target_conditions.append(
+                and_(
+                    Announcement.target_type == "user",
+                    Announcement.target_ids.like(f'%{user_id}%')
+                )
+            )
 
         conditions.append(or_(*target_conditions))
 

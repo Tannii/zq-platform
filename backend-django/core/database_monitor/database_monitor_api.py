@@ -1,15 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: database_monitor_api.py
 @Desc: 从数据库服务器获取所有数据库列表 - databases = []
 """
-# time: 2024/12/21
-# file: database_monitor_api.py
-# author: AI Assistant
 
 import logging
 from typing import List

@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: base_database_handler.py
 @Desc: 数据库处理器基类 - 定义所有数据库操作的抽象接口，支持PostgreSQL、MySQL、SQL Server等
 """
-"""
-数据库处理器基类
-定义所有数据库操作的抽象接口，支持PostgreSQL、MySQL、SQL Server等
-"""
+
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional
 

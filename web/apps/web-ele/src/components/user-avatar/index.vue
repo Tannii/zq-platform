@@ -26,19 +26,23 @@ interface Props {
   /**
    * 用户对象（包含 id, name, avatar 等信息）
    */
+  // eslint-disable-next-line vue/require-default-prop
   user?: User;
   /**
    * 用户ID（用于获取详细信息和用户对象）
    */
+  // eslint-disable-next-line vue/require-default-prop
   userId?: string;
   /**
    * 用户名字或用户名（可选，如果不提供则从 user 或 userId 中获取）
    */
+  // eslint-disable-next-line vue/require-default-prop
   name?: string;
   /**
    * 头像文件路径（不需要调用 getFileStreamUrl，组件内部处理）
    * @deprecated 建议使用 user 或 userId 代替
    */
+  // eslint-disable-next-line vue/require-default-prop
   avatar?: string;
   /**
    * 头像尺寸（像素）

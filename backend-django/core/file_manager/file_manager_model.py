@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# time: 2024/12/19
-# file: file_manager_model.py
-# author: 臧成龙
-# QQ: 939589097
+"""
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: file_manager_model.py
+@Desc: FileManager Model - 文件管理模型
+"""
 
 from django.db import models
 

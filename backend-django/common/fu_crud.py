@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# time: 1/24/2024 9:38 AM
-# file: fu_crud.py
-# author: 臧成龙
-# QQ: 939589097
+"""
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: fu_crud.py
+@Desc: CRUD 操作工具
+"""
 import uuid
 from typing import Type
 from urllib.parse import unquote

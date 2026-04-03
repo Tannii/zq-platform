@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# time: 1/23/2024 9:52 PM
-# file: __init__.py.py
-# author: 臧成龙
-# QQ: 939589097
+"""
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File:init__.py
+@Desc: 包初始化
+"""

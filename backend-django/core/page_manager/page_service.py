@@ -1,5 +1,9 @@
 """
-页面元数据管理服务
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: page_service.py
+@Desc: 页面元数据管理服务 - 用于管理系统页面元数据
 """
 import logging
 from typing import Any, Dict, List

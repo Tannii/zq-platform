@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: auth_api.py
 @Desc: Auth API - 认证相关接口 - 提供登录、登出、令牌刷新、用户信息等功能
-"""
-"""
-Auth API - 认证相关接口
-提供登录、登出、令牌刷新、用户信息等功能
 """
 import logging
 from typing import List
@@ -136,9 +132,7 @@ def get_userinfo(request):
     user_info = request.auth
     if not user_info:
         raise HttpError(message="未授权", status_code=401)
-
     user = get_object_or_404(User, id=user_info.id)
-
     return UserInfoOut(
         id=str(user.pk),
         username=user.username,
@@ -147,7 +141,7 @@ def get_userinfo(request):
     )
 
 
-@router.get("/permCode", response=List[str], summary="获取用户权限代码")
+@router.get("/perm_code", response=List[str], summary="获取用户权限代码")
 def get_permission_codes(request):
     """
     获取当前用户的按钮权限代码列表

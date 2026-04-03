@@ -1,15 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: database_collector.py
 @Desc: 递归地序列化数据，处理datetime、decimal等类型
 """
-# time: 2024/12/21
-# file: database_collector.py
-# author: AI Assistant
 
 import logging
 import time

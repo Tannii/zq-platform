@@ -5,6 +5,8 @@
 """
 from sqlalchemy import Column, String, Text, Integer
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy import JSON
+
 
 from app.base_model import BaseModel
 
@@ -21,4 +23,4 @@ class PageMeta(BaseModel):
     version = Column(Integer, default=1, comment="版本号")
 
     # 页面配置（存储 dashboard-design 的配置）
-    page_config = Column(JSONB, default=dict, comment="页面设计配置")
+    page_config = Column(JSON, default=dict, comment="页面设计配置")

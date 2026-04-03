@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: auth_service.py
 @Desc: Auth Service - 认证业务逻辑层 - 处理用户认证、令牌生成、权限查询等业务逻辑
 """
+from core.permission.permission_model import Permission
+
 """
 Auth Service - 认证业务逻辑层
 处理用户认证、令牌生成、权限查询等业务逻辑
@@ -335,36 +337,48 @@ class AuthService:
     @staticmethod
     def get_user_permission_codes(user: User) -> List[str]:
         """
-        获取用户的权限代码列表
+               获取用户的按钮权限代码列表
 
-        Args:
-            user: 用户对象
+               Args:
+                   user: 用户对象
 
-        Returns:
-            List[str]: 权限代码列表
-        """
+               Returns:
+                   List[str]: 权限代码列表
+               """
         # 尝试从缓存获取
         # cache_key = f"user_perm_codes:{user.id}"
         # cached_codes = cache.get(cache_key)
         # if cached_codes is not None:
         #     return cached_codes
-        #
-        # if user.is_superuser:
-        #     # 超级管理员获取所有按钮权限
-        #     buttons = Button.objects.filter(status=True).values_list('code', flat=True)
-        # else:
-        #     # 普通用户获取其角色关联的按钮权限
-        #     button_ids = user.role.values_list("button__id", flat=True)
-        #     buttons = Button.objects.filter(
-        #         id__in=button_ids,
-        #         status=True
-        #     ).values_list('code', flat=True)
-        #
-        # # 转为列表并去重
-        # code_list = list(set(buttons))
-        #
-        # # 缓存结果（10分钟）
+
+        if user.is_superuser:
+            # 超级管理员获取所有按钮权限
+            permissions = Permission.objects.filter(
+                permission_type=0,  # 0=按钮权限
+                is_active=True
+            ).values_list('code', flat=True)
+        else:
+            # 普通用户获取其角色关联的按钮权限
+            # 获取用户的所有启用角色
+            active_roles = user.core_roles.filter(status=True)
+            print(active_roles)
+            # 获取角色关联的权限
+            permission_ids = Permission.objects.filter(
+                roles__in=active_roles,  # 正确：使用 roles__in
+                permission_type=0,  # 0=按钮权限
+                is_active=True
+            ).values_list('id', flat=True).distinct()
+            # 获取权限代码
+            permissions = Permission.objects.filter(
+                id__in=permission_ids,
+                is_active=True
+            ).values_list('code', flat=True)
+
+        # 转为列表并去重
+        code_list = list(set(permissions))
+
+        # 缓存结果（10分钟）
         # cache.set(cache_key, code_list, 600)
-        #
-        # return code_list
-        pass
+
+        return code_list
+

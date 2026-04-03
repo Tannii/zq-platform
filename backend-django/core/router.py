@@ -27,6 +27,7 @@ from core.role.role_api import router as role_router
 from core.server_monitor.server_monitor_api import router as server_monitor_router
 from core.user.user_api import router as user_router
 from core.data_source.data_source_api import router as data_source_router
+from core.person.person_api import router as person_router
 
 
 # 创建核心模块的总路由
@@ -35,6 +36,7 @@ core_router = Router()
 # 注册子路由
 core_router.add_router("", auth_router, tags=["Core-Auth"])
 core_router.add_router("", user_router, tags=["Core-User"])
+core_router.add_router("", person_router, tags=["Core-Person"])
 core_router.add_router("", role_router, tags=["Core-Role"])
 core_router.add_router("", permission_router, tags=["Core-Permission"])
 core_router.add_router("", dept_router, tags=["Core-Dept"])

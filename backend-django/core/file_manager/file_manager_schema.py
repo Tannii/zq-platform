@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# time: 2024/12/19
-# file: file_manager_schema.py
-# author: 臧成龙
-# QQ: 939589097
+"""
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: file_manager_schema.py
+@Desc: FileManager Schema - 文件管理数据验证模式
+"""
 
 from typing import List
 

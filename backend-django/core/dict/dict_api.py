@@ -1,18 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: dict_api.py
-@Desc: Dictionary API - 字典数据接口 - 
-"""
-"""
-Dictionary API - 字典数据接口
-
+@Desc: Dictionary API - 字典数据接口
 字典模块用于管理系统字典数据，支持字典的增删改查和批量操作。
 集成缓存机制，优化频繁访问的字典数据性能。
 """
+
 import logging
 from typing import List
 

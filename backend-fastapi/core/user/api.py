@@ -268,6 +268,8 @@ async def get_user_by_id(user_id: str, db: AsyncSession = Depends(get_db)):
 @router.put("/{user_id}", response_model=UserResponse, summary="更新用户")
 async def update_user(user_id: str, data: UserUpdate, db: AsyncSession = Depends(get_db)):
     """更新用户"""
+    # 打印请求数据
+    print(f"Update request data: {data.model_dump()}")
     # 用户名唯一性校验
     if data.username:
         if not await UserService.check_unique(db, field="username", value=data.username, exclude_id=user_id):
@@ -332,6 +334,8 @@ def _build_user_response(user) -> UserResponse:
         is_active=user.is_active,
         dept_id=user.dept_id,
         manager_id=user.manager_id,
+        role_id=user.role_id,  # 添加角色ID
+        post_id=user.post_id,  # 添加岗位ID
         last_login=user.last_login,
         last_login_ip=user.last_login_ip,
         last_login_type=user.last_login_type,

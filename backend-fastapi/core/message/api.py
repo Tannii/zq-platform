@@ -293,7 +293,6 @@ async def list_user_announcements(
         page_size=page_size,
         unread_only=unread_only,
     )
-
     return PaginatedResponse(
         items=[await _build_user_announcement_out(db, item) for item in items],
         total=total,

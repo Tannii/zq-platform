@@ -3,6 +3,7 @@ import type { User } from '#/api/core';
 
 import { ref } from 'vue';
 
+import { AccessControl } from '@vben/access';
 import { Page } from '@vben/common-ui';
 import { Edit, Plus, RotateCw, Trash2 } from '@vben/icons';
 import { $t } from '@vben/locales';
@@ -249,13 +250,17 @@ function refreshGrid() {
     <Grid @selection-change="handleSelectionChange">
       <!-- 工具栏操作 -->
       <template #toolbar-actions>
-        <ElButton type="primary" :icon="Plus" @click="onCreate">
-          {{ $t('ui.actionTitle.create', [$t('user.name')]) }}
-        </ElButton>
-        <ElButton type="danger" plain @click="onBatchDelete">
-          {{ $t('user.batchDelete') }}
-          {{ selectedRows.length > 0 ? `(${selectedRows.length})` : '' }}
-        </ElButton>
+        <AccessControl :codes="['button:user:create']" type="code">
+          <ElButton type="primary" :icon="Plus" @click="onCreate">
+            {{ $t('ui.actionTitle.create', [$t('user.name')]) }}
+          </ElButton>
+        </AccessControl>
+        <AccessControl :codes="['button:user:delete']" type="code">
+          <ElButton type="danger" plain @click="onBatchDelete">
+            {{ $t('user.batchDelete') }}
+            {{ selectedRows.length > 0 ? `(${selectedRows.length})` : '' }}
+          </ElButton>
+        </AccessControl>
       </template>
 
       <!-- 头像列 -->
@@ -305,26 +310,32 @@ function refreshGrid() {
 
       <!-- 操作列 -->
       <template #cell-actions="{ row }">
-        <ElButton link type="primary" :icon="Edit" @click="onEdit(row)">
-          {{ $t('common.edit') }}
-        </ElButton>
-        <ElButton
-          link
-          type="warning"
-          :icon="RotateCw"
-          @click="onResetPassword(row)"
-        >
-          {{ $t('user.resetPassword') }}
-        </ElButton>
-        <ElButton
-          v-if="row.id !== 'a0000000-0000-0000-0000-000000000001'"
-          link
-          type="danger"
-          :icon="Trash2"
-          @click="onDelete(row)"
-        >
-          {{ $t('common.delete') }}
-        </ElButton>
+        <AccessControl :codes="['button:user:edit']" type="code">
+          <ElButton link type="primary" :icon="Edit" @click="onEdit(row)">
+            {{ $t('common.edit') }}
+          </ElButton>
+        </AccessControl>
+        <AccessControl :codes="['button:user:reset_password']" type="code">
+          <ElButton
+            link
+            type="warning"
+            :icon="RotateCw"
+            @click="onResetPassword(row)"
+          >
+            {{ $t('user.resetPassword') }}
+          </ElButton>
+        </AccessControl>
+        <AccessControl :codes="['button:user:part_delete']" type="code">
+          <ElButton
+            v-if="row.id !== 'a0000000-0000-0000-0000-000000000001'"
+            link
+            type="danger"
+            :icon="Trash2"
+            @click="onDelete(row)"
+          >
+            {{ $t('common.delete') }}
+          </ElButton>
+        </AccessControl>
       </template>
     </Grid>
   </Page>

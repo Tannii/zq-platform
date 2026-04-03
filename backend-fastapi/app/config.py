@@ -8,7 +8,7 @@
 @Desc: 应用配置 - # 环境标识
 """
 import os
-from typing import Literal, Optional
+from typing import Literal, Optional, Dict, Any
 
 from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -26,14 +26,14 @@ class Settings(BaseSettings):
     APP_PORT: int = 8000
     
     # 数据库配置
-    DB_HOST: str = "localhost"
-    DB_PORT: int = 5432
-    DB_USER: str = "postgres"
-    DB_PASSWORD: str = ""
-    DB_NAME: str = ""
+    DB_HOST: str = "192.168.2.20"
+    DB_PORT: int = 3306
+    DB_USER: str = "root"
+    DB_PASSWORD: str = "b2C@yQ8B2^U2AQXT3Evf"
+    DB_NAME: str = "zq_fastapi"
     
     # 数据库连接URL（可手动配置，否则自动拼接）
-    DATABASE_URL: Optional[str] = None
+    DATABASE_URL: Optional[str] = "sqlite+aiosqlite:///./app.db"
     
     # 分页配置
     PAGE_SIZE: int = 20
@@ -43,7 +43,7 @@ class Settings(BaseSettings):
     REDIS_HOST: str = "localhost"
     REDIS_PORT: int = 6379
     REDIS_PASSWORD: str = ""
-    REDIS_DB: int = 0
+    REDIS_DB: int = 1
     REDIS_URL: Optional[str] = None
     
     # 缓存配置
@@ -57,7 +57,7 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7  # Refresh Token过期时间（天）
 
     # 文件存储配置
-    FILE_STORAGE_TYPE: str = "minio"  # local/oss/minio/azure
+    FILE_STORAGE_TYPE: str = "local"  # local/oss/minio/azure
     FILE_STORAGE_LOCAL_PATH: Optional[str] = None  # 本地存储路径
     # OSS配置
     OSS_ENDPOINT: Optional[str] = None
@@ -122,7 +122,7 @@ class Settings(BaseSettings):
         """自动拼接DATABASE_URL和REDIS_URL"""
         if not self.DATABASE_URL:
             self.DATABASE_URL = (
-                f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASSWORD}"
+                f"mysql+aiomysql://{self.DB_USER}:{self.DB_PASSWORD}"
                 f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
             )
         if not self.REDIS_URL:
@@ -139,6 +139,10 @@ def get_settings() -> Settings:
     """根据环境变量加载对应的配置文件"""
     env = os.getenv("ENV", "dev")
     return Settings(_env_file=f"env/{env}.env")
-
+# 文件存储配置
+STORAGE_CONFIG: Dict[str, Any] = {
+    "storage_type": "local",  # 默认使用本地存储
+    "local_base_path": "./storage"
+}
 
 settings = get_settings()

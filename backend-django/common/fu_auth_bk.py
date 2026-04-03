@@ -1,8 +1,11 @@
-# -*- coding:utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
-@Time : 2022/4/27 3:40 PM
-@Author: binkuolo
-@Des: JWT鉴权
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: fu_auth.py
+@Desc: JWT 鉴权和权限校验
 """
 import logging
 import re

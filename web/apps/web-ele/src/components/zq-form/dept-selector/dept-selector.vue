@@ -164,7 +164,9 @@ const loadDepartments = async () => {
   try {
     deptLoading.value = true;
     const result = await getDeptByParentApi(null);
-
+    if (result && result.length === 0) {
+      deptLoading.value = false;
+    }
     // 添加"全部部门"根节点
     const rootNode = {
       id: '0',

@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: dict_schema.py
 @Desc: Dictionary Schema - 字典数据验证模式
 """
-"""
-Dictionary Schema - 字典数据验证模式
-"""
+
 from typing import Optional
 
 from ninja import ModelSchema, Field

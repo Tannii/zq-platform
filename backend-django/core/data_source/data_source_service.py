@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Data Source Service - 数据源服务
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
+@File: data_source_api.py
+@Desc: Data Source Service - 数据源服务
 提供数据源执行、缓存、转换等核心功能
 """
 import hashlib

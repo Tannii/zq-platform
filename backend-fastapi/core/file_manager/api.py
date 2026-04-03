@@ -13,7 +13,7 @@
 import os
 from typing import Optional, List
 
-from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File, Form
+from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File, Form, Request
 from fastapi.responses import StreamingResponse, Response, FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -34,6 +34,7 @@ from core.file_manager.schema import (
 )
 from core.file_manager.service import FileManagerService
 from core.file_manager.storage_backends import get_storage_backend
+from utils.security import get_current_user
 
 router = APIRouter(prefix="/file_manager", tags=["文件管理"])
 
@@ -66,7 +67,7 @@ def _build_file_response(item: FileManager, has_children: bool = False, parent_n
     }
 
 
-@router.post("/upload", response_model=FileManagerResponse, summary="上传文件")
+@router.post("/upload", response_model=FileManagerResponse, summary="上传文件", dependencies=[Depends(lambda: None)])
 async def upload_file(
     file: UploadFile = File(...),
     parent_id: Optional[str] = Form(None, alias="parentId"),

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: settings.py
 @Desc: Django settings for application project. - 
 """
@@ -344,7 +344,7 @@ X_FRAME_OPTIONS = 'DENY'
 # ================================================= #
 
 # 文件存储类型: local, oss, minio, azure
-FILE_STORAGE_TYPE = 'minio'
+FILE_STORAGE_TYPE = 'local'
 
 # 本地存储配置
 FILE_STORAGE_LOCAL_PATH = os.path.join(BASE_DIR, 'media', 'file_manager')

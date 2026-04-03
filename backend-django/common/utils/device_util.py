@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Author: 臧成龙
-@Contact: 939589097@qq.com
-@Time: 2025-12-31
+@Author: 张诚成
+@Contact: 941177402@qq.com
+@Time: 2026-04-03
 @File: device_util.py
 @Desc: 设备信息解析工具 - 从 User-Agent 字符串中提取浏览器、操作系统、设备类型等信息
 """
